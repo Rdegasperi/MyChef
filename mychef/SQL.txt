@@ -1,0 +1,7 @@
+
+SITO DB : https://somee.com/DOKA/DOU/DOUserDefault.aspx?k1k3k5=q%2fQ%2b4jMerXsOCk4ItQJWYSUTg%2bBBgBPZI2%2bn9OD8RwE%3d
+
+Login : lexcassi - Thunder777!
+		
+		SQL TUTORIAL : https://www.w3schools.com/sql/default.asp
+		INSERT INTO Utente (id, nomeUtente, password) VALUES (1, 'lex', 'psw');
