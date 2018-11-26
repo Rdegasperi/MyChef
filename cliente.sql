@@ -1,13 +1,16 @@
 CREATE TABLE `cliente` (
 	`ID` INT(11) NOT NULL AUTO_INCREMENT,
-	`Username` VARCHAR(50) NULL DEFAULT NULL,
-	`Contatti` VARCHAR(50) NULL DEFAULT NULL,
-	`Provincia` VARCHAR(50) NULL DEFAULT NULL,
-	`Comune` VARCHAR(50) NULL DEFAULT NULL,
-	`Frazione` VARCHAR(50) NULL DEFAULT NULL,
-	`Indirizzo` VARCHAR(50) NULL DEFAULT NULL,
-	`Num_telefono` VARCHAR(50) NULL DEFAULT NULL COMMENT 'opzionale',
+	`email` VARCHAR(50) NOT NULL,
+	`password` VARCHAR(50) NOT NULL,
+	`nome` INT(11) NOT NULL,
+	`cognome` INT(11) NOT NULL,
+	`provincia` VARCHAR(50) NOT NULL,
+	`comune` VARCHAR(50) NOT NULL,
+	`frazione` VARCHAR(50) NULL DEFAULT NULL,
+	`indirizzo` VARCHAR(50) NOT NULL,
+	`numero_telefono` INT(11) NULL DEFAULT NULL COMMENT 'opzionale',
 	PRIMARY KEY (`ID`)
 )
+COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 ;
