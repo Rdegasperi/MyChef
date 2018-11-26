@@ -21,18 +21,20 @@ public class InterrogaDB {
 	public static List<Utente> caricaArraylist(){
 		
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			Class.forName("org.mariadb.jdbc.Driver");
 //			jdbc:sqlserver://mychefdatabase.mssql.somee.com:1433;databaseName=mychefdatabase;integratedSecurity=true;
-			Connection conn = DriverManager.getConnection("jdbc:sqlserver://mychefdatabase.mssql.somee.com:1433;databaseName=mychefdatabase", "lexcassi_SQLLogin_1", "thunder777");
+			Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mychef", "root", "");
 			Statement comandosql = conn.createStatement();
-			ResultSet utenti = comandosql.executeQuery("select * from Utente");
+			ResultSet utenti = comandosql.executeQuery("select * from cliente");
 			List <Utente> lista = new ArrayList<Utente>();
 			
 				while(utenti.next()) {
 					Utente a = new Utente();
-				 	a.setId(utenti.getInt("id"));
-					a.setUtente(utenti.getString("nomeUtente"));
+				 	a.setId(utenti.getInt("ID"));
+					a.setUtente(utenti.getString("email"));
 					a.setPassword(utenti.getString("password"));
+					a.setCognome(utenti.getString("cognome"));
+					a.setNome(utenti.getString("nome"));
 					lista.add(a);
 				}
 				return lista;
