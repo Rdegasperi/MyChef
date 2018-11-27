@@ -11,14 +11,14 @@ import java.util.List;
 
 public class InterrogaDB {
 	public static void main(String[] args) {
-		List<Utente> lista = caricaArraylist();
-		for(Utente u : lista) {
+		List<Cliente> lista = caricaArraylist();
+		for(Cliente u : lista) {
 			System.out.println(u);
 		}
 		
 	}
 
-	public static List<Utente> caricaArraylist(){
+	public static List<Cliente> caricaArraylist(){
 		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
@@ -26,12 +26,12 @@ public class InterrogaDB {
 			Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mychef", "root", "");
 			Statement comandosql = conn.createStatement();
 			ResultSet utenti = comandosql.executeQuery("select * from cliente");
-			List <Utente> lista = new ArrayList<Utente>();
+			List <Cliente> lista = new ArrayList<Cliente>();
 			
 				while(utenti.next()) {
-					Utente a = new Utente();
-				 	a.setId(utenti.getInt("ID"));
-					a.setUtente(utenti.getString("email"));
+					Cliente a = new Cliente();
+				 	a.setCodiceFiscale(utenti.getString("codice_fiscale"));
+					a.setEmail(utenti.getString("email"));
 					a.setPassword(utenti.getString("password"));
 					a.setCognome(utenti.getString("cognome"));
 					a.setNome(utenti.getString("nome"));
@@ -47,4 +47,28 @@ public class InterrogaDB {
 		}
 	return null;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
