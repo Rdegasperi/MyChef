@@ -10,12 +10,14 @@ import javax.persistence.Persistence;
 import org.junit.Before;
 import org.junit.Test;
 
-import mychef.Utente;
+import mychef.Cliente;
 
 public class EntityManagerTest {
 
 	private EntityManagerFactory emf;
 	private EntityManager em;
+
+	private String prova = "prova";
 
 	@Before
 	public void inizializza() {
@@ -29,11 +31,10 @@ public class EntityManagerTest {
 		assertNotNull("entity manager è nullo, ma non dovrebbe!", this.em);
 	}
 
-	// @Test
 	public void inserisciClienteDiTest() {
-		Utente c = new Utente();
-		c.setCodiceFiscale("h4738249h3728");
-		c.setCognome("TESTHE£J");
+		Cliente c = new Cliente();
+		c.setCodiceFiscale(this.prova);
+		c.setCognome("un_cognome");
 
 		// salvo il cliente
 		this.em.getTransaction().begin();
@@ -41,12 +42,11 @@ public class EntityManagerTest {
 		this.em.getTransaction().commit();
 	}
 
-	// @Test
 	public void RimozioneClienteTest() {
 		this.inserisciClienteDiTest();
 
 		// recupero il cliente (esempio di lettura per chiave)
-		Utente c2 = this.em.find(Utente.class, "TESTHE£J");
+		Cliente c2 = this.em.find(Cliente.class, this.prova);
 		assertNotNull("non ho trovato il cliente", c2);
 
 		// rimuovo il cliente di test
@@ -60,18 +60,13 @@ public class EntityManagerTest {
 		this.inserisciClienteDiTest();
 
 		// recupero il cliente (esempio di lettura per chiave)
-		Utente c1 = this.em.find(Utente.class, "TESTHE£J");
+		Cliente c1 = this.em.find(Cliente.class, this.prova);
 
 		this.em.getTransaction().begin();
-		c1.setCognome("nuovo");
+		c1.setCognome("nuovo_cognome");
 		this.em.getTransaction().commit();
 
-		Utente c2 = this.em.find(Utente.class, "TESTHE£J");
-		assertEquals("la partita IVA non coincide", "*****", c2.getCodiceFiscale());
-
-		// rimuovo il cliente di test
-		this.em.getTransaction().begin();
-		this.em.remove(c2);
-		this.em.getTransaction().commit();
+		Cliente c2 = this.em.find(Cliente.class, this.prova);
+		assertEquals("il cognome non coincide", "nuovo_cognome", c2.getCognome());
 	}
 }
